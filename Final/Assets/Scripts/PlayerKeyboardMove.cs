@@ -44,6 +44,8 @@ public class PlayerKeyboardMove : MonoBehaviour
                 isJumping = true;
                 rigidBody.AddForce(transform.up * jumpForce);
             }
+            isJumping = false;
         }
+        
     }
 }
