@@ -43,6 +43,12 @@ public class CheckPointController : MonoBehaviour
             Debug.Log("On terrain");
             Respawn();
         }
+
+        if(collision.gameObject.tag == "Spikes")
+        {
+            Debug.Log("Spiky");
+            Respawn();
+        }
     }
 
     public void Respawn()
