@@ -55020,9 +55020,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee38d0915405e84cbb4952b2938610f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  groundDrag: 1
-  jumpForce: 12
+  moveSpeed: 8
+  groundDrag: 1.5
+  jumpForce: 13
   jumpCooldown: 0.5
   airMultiplier: 0.2
   walkSpeed: 0
