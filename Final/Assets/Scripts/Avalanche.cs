@@ -13,9 +13,16 @@ public class Avalanche : MonoBehaviour
     public float moveSpeed = 5f;
     public bool startMove = false;
 
+    public GameObject player;
+    public CheckPointControllerTwo checkPointController;
+
 
     void Start()
     {
+
+        player = GameObject.Find("Player");
+        checkPointController = player.GetComponent<CheckPointControllerTwo>();
+
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
         lossPanel.SetActive(false);
@@ -37,9 +44,19 @@ public class Avalanche : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name=="PlayerObj")
+        if (other.tag == "Player")
         {
-            lossPanel.SetActive(true);
+            if (avalanche.transform.position.x >= checkPointController.spawnLocation.position.x)
+            {
+                lossPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                checkPointController.Respawn();
+            }
+
         }
     }
 }
