@@ -9,6 +9,8 @@ TagManager:
   - spike
   - Waypoint
   - Wall
+  - PaintBall
+  - Mob
   layers:
   - Default
   - TransparentFX

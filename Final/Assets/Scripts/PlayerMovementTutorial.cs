@@ -63,6 +63,25 @@ public class PlayerMovementTutorial : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
+
+        if(Input.GetKey(KeyCode.Space) && readyToJump && grounded)
+        {
+            anim.SetBool("Jump", true);
+        }
+        else
+        {
+            anim.SetBool("Jump", false);
+        }
+        
     }
 
     private void FixedUpdate()
@@ -79,10 +98,10 @@ public class PlayerMovementTutorial : MonoBehaviour
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
-
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
+            
         }
 
         
@@ -122,6 +141,7 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
         // reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }

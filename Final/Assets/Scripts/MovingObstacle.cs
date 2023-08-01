@@ -8,6 +8,8 @@ public class MovingObstacle : MonoBehaviour
 
     public Vector3 hiddenPosition;
 
+    public Vector3 startingPos;
+
     public bool platformMove = false;
 
     public float moveSpeed = 3.0f;
@@ -17,6 +19,7 @@ public class MovingObstacle : MonoBehaviour
     {
         platform = GameObject.Find("movingPlatform");
         hiddenPosition = platform.transform.position + new Vector3(24f, 0, 0);
+        startingPos = platform.transform.position;
     }
 
     // Update is called once per frame
@@ -31,9 +34,17 @@ public class MovingObstacle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name=="movingButton")
+
+        if (other.name == "movingButton" && platformMove == true)
+        {
+            platform.transform.position = startingPos;
+            platformMove = false;
+        }
+        if (other.name=="movingButton")
         {
             platformMove = true;
         }
+
+
     }
 }

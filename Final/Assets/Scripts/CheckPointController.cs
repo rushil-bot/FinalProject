@@ -30,7 +30,7 @@ public class CheckPointController : MonoBehaviour
     {
         if (other.tag == "CheckPoint")
         {
-            Debug.Log("Here");
+            //Debug.Log("Here");
             GameObject currentCheckpoint = GameObject.Find(other.name);
             spawnLocation = currentCheckpoint.transform;
         }
