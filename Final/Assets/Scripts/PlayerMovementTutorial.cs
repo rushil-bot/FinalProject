@@ -33,7 +33,11 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     Vector3 moveDirection;
 
+    public GameObject character;
+
     Rigidbody rb;
+
+    public Animator anim;
 
     private void Start()
     {
@@ -41,6 +45,9 @@ public class PlayerMovementTutorial : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+
+        character = GameObject.Find("characterMedium");
+        anim = character.GetComponent<Animator>();
     }
 
     private void Update()
@@ -77,16 +84,22 @@ public class PlayerMovementTutorial : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        
     }
 
     private void MovePlayer()
     {
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        
 
         // on ground
         if (grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        }
 
         // in air
         else if (!grounded)
