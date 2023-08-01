@@ -15,7 +15,7 @@ public class CheckPointController : MonoBehaviour
 
         spawnPoint = GameObject.Find("SpawnPoint");
         spawnLocation = spawnPoint.transform;
-        Debug.Log(spawnPoint.transform.position);
+        //Debug.Log(spawnPoint.transform.position);
         this.transform.position = spawnLocation.position;
 
     }
@@ -40,14 +40,17 @@ public class CheckPointController : MonoBehaviour
     {
         if(collision.gameObject.name == "Terrain")
         {
-            Debug.Log("On terrain");
             Respawn();
         }
 
         if(collision.gameObject.tag == "Spikes")
         {
-            Debug.Log("Spiky");
             Respawn();
+        }
+
+        if(collision.gameObject.name == "EndPoint")
+        {
+            Debug.Log("Completed game!");
         }
     }
 
