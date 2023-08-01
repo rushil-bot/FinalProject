@@ -12,11 +12,11 @@ public class DisPform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pform1 = GameObject.Find("DisPlatform1");
+        pform1 = GameObject.Find("DisBlock1");
         pform2 = GameObject.Find("DisBlock2");
 
-        pform1.SetActive(false);
-        pform2.SetActive(false);
+        pform1.SetActive(true);
+        pform2.SetActive(true);
     }
 
     // Update is called once per frame
@@ -32,14 +32,14 @@ public class DisPform : MonoBehaviour
 
     IEnumerator AlternateSpikes()
     {
-        pform1.SetActive(true);
-        pform2.SetActive(true);
+        pform1.SetActive(false);
+        pform2.SetActive(false);
 
         yield return new WaitForSeconds(2.0f);
 
 
-        pform1.SetActive(false);
-        pform2.SetActive(false);
+        pform1.SetActive(true);
+        pform2.SetActive(true);
         beginTrap = false;
     }
 
