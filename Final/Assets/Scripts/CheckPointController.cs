@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckPointController : MonoBehaviour
 {
@@ -32,7 +33,14 @@ public class CheckPointController : MonoBehaviour
         {
             //Debug.Log("Here");
             GameObject currentCheckpoint = GameObject.Find(other.name);
+            spawnPoint = currentCheckpoint;
             spawnLocation = currentCheckpoint.transform;
+        }
+
+        if(other.name == "EndPoint")
+        {
+            Debug.Log("Level Completed!");
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
         }
     }
 
@@ -48,10 +56,7 @@ public class CheckPointController : MonoBehaviour
             Respawn();
         }
 
-        if(collision.gameObject.name == "EndPoint")
-        {
-            Debug.Log("Completed game!");
-        }
+
     }
 
     public void Respawn()

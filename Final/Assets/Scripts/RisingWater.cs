@@ -8,6 +8,9 @@ public class RisingWater : MonoBehaviour
     public GameObject canvas;
     public GameObject lossPanel;
 
+    public GameObject player;
+    public CheckPointController checkPointController;
+
     public GameObject water;
     public Vector3 hiddenPosition;
     public float riseSpeed = 0.5f;
@@ -16,6 +19,8 @@ public class RisingWater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        checkPointController = player.GetComponent<CheckPointController>();
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
         lossPanel.SetActive(false);
@@ -37,7 +42,7 @@ public class RisingWater : MonoBehaviour
 
     IEnumerator timer()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
         startRise = true;
 
     }
@@ -49,9 +54,19 @@ public class RisingWater : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name=="Player")
+        if(other.tag=="Player")
         {
-            lossPanel.SetActive(true);
+            if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
+            {
+                lossPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                checkPointController.Respawn();
+            }
+
         }
     }
 }

@@ -64,9 +64,10 @@ public class MovingPlatform : MonoBehaviour
 
     }
     */
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         other.transform.SetParent(null);
     }
+    */
 
 }
