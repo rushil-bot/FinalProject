@@ -8,6 +8,9 @@ public class PlayerCombat : MonoBehaviour
     public GameObject lossPanel;
     public GameObject ava;
     public CheckPointControllerTwo checkPointController;
+
+    public GameObject player;
+    public AudioSource playerAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,9 @@ public class PlayerCombat : MonoBehaviour
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
         lossPanel.SetActive(false);
+
+        player = GameObject.Find("Player");
+        playerAudio = player.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,6 +35,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (other.tag == "PaintBall")
         {
+            playerAudio.Play();
             if (ava.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);
@@ -45,6 +52,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (other.tag == "Mob")
         {
+            playerAudio.Play();
             if (ava.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);

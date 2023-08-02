@@ -16,6 +16,7 @@ public class Avalanche : MonoBehaviour
     public bool startMove = false;
 
     public GameObject player;
+    public AudioSource playerAudio;
     public CheckPointControllerTwo checkPointController;
 
 
@@ -33,6 +34,8 @@ public class Avalanche : MonoBehaviour
         hiddenPosition = avalanche.transform.position + new Vector3(352.0f, 0, 0);
 
         audio = avalanche.GetComponent<AudioSource>();
+
+        playerAudio = player.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,6 +53,7 @@ public class Avalanche : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            playerAudio.Play();
             if (avalanche.transform.position.x >= checkPointController.spawnLocation.position.x)
             {
                 

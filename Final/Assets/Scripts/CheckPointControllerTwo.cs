@@ -17,6 +17,9 @@ public class CheckPointControllerTwo : MonoBehaviour
 
     public AudioSource audio;
 
+    public GameObject player;
+    public AudioSource playerAudio;
+
     public GameObject[] checkpoints = new GameObject[6];
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,9 @@ public class CheckPointControllerTwo : MonoBehaviour
         winPanel = canvas.transform.Find("GameWinPanel").gameObject;
 
         audio = avalanche.GetComponent<AudioSource>();
+
+        player = GameObject.Find("Player");
+        playerAudio = player.GetComponent<AudioSource>();
 
         lossPanel.SetActive(false);
         winPanel.SetActive(false);
@@ -66,8 +72,10 @@ public class CheckPointControllerTwo : MonoBehaviour
     {
         if (collision.gameObject.name == "Terrain")
         {
-            if(spawnLocation.position.x <= ava.transform.position.x)
+            playerAudio.Play();
+            if (spawnLocation.position.x <= ava.transform.position.x)
             {
+                
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -82,6 +90,7 @@ public class CheckPointControllerTwo : MonoBehaviour
 
         if (collision.gameObject.tag == "Spikes")
         {
+            playerAudio.Play();
             if (spawnLocation.position.x <= ava.transform.position.x)
             {
                 lossPanel.SetActive(true);
