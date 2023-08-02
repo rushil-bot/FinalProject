@@ -54,7 +54,7 @@ public class MobController : MonoBehaviour
     {
         CheckGameState();
 
-        if (this.transform.hasChanged)
+        if (state != GuardState.Attack)
         {
             anim.SetBool("walking", true);
         }
