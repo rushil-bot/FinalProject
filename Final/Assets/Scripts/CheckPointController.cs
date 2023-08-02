@@ -98,6 +98,7 @@ public class CheckPointController : MonoBehaviour
         {
             if (water.transform.position.y >= spawnLocation.position.y)
             {
+                audio.Stop();
                 playerAudio.Play();
                 lossPanel.SetActive(true);
                 lossAudio.Play();

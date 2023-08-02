@@ -72,11 +72,12 @@ public class RisingWater : MonoBehaviour
            
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
+                audio.Stop();
                 lossPanel.SetActive(true);
                 lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                audio.Stop();
+                
             }
             else
             {
