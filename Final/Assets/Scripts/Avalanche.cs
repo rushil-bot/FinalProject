@@ -11,6 +11,7 @@ public class Avalanche : MonoBehaviour
     public AudioSource audio;
 
     public GameObject avalanche;
+    public GameObject clouds;
     public Vector3 hiddenPosition;
     public float moveSpeed = 5f;
     public bool startMove = false;
@@ -31,6 +32,7 @@ public class Avalanche : MonoBehaviour
         lossPanel.SetActive(false);
         
         avalanche = GameObject.Find("Avalanche");
+        clouds = GameObject.Find("CloudParticleSystem");
         hiddenPosition = avalanche.transform.position + new Vector3(352.0f, 0, 0);
 
         audio = avalanche.GetComponent<AudioSource>();
@@ -41,6 +43,7 @@ public class Avalanche : MonoBehaviour
     void Update()
     {
         float step = moveSpeed * Time.deltaTime;
+        clouds.transform.position = Vector3.MoveTowards(clouds.transform.position, hiddenPosition, step);
         avalanche.transform.position = Vector3.MoveTowards(avalanche.transform.position, hiddenPosition, step);
     }
 
