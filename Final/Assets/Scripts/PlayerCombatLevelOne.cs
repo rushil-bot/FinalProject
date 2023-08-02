@@ -35,7 +35,6 @@ public class PlayerCombatLevelOne : MonoBehaviour
     {
         if (other.tag == "PaintBall")
         {
-            Debug.Log("paintball hit");
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);

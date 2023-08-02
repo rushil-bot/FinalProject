@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-
-    public CheckPointController checkPointController;
+    public GameObject canvas;
+    public GameObject lossPanel;
+    public GameObject ava;
+    public CheckPointControllerTwo checkPointController;
     // Start is called before the first frame update
     void Start()
     {
 
-        checkPointController = this.GetComponent<CheckPointController>();
+        checkPointController = this.GetComponent<CheckPointControllerTwo>();
+
+        ava = GameObject.Find("Avalanche");
+        canvas = GameObject.Find("Canvas");
+        lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        lossPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,14 +27,34 @@ public class PlayerCombat : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "PaintBall")
+        if (other.tag == "PaintBall")
         {
-            checkPointController.Respawn();
+            if (ava.transform.position.y >= checkPointController.spawnLocation.position.y)
+            {
+                lossPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Destroy(other);
+            }
+            else
+            {
+                checkPointController.Respawn();
+                Destroy(other);
+            }
         }
 
-        if(other.tag == "Mob")
+        if (other.tag == "Mob")
         {
-            checkPointController.Respawn();
+            if (ava.transform.position.y >= checkPointController.spawnLocation.position.y)
+            {
+                lossPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                checkPointController.Respawn();
+            }
         }
     }
 }
