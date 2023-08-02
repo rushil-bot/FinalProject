@@ -62,6 +62,7 @@ public class PlayerCombatLevelOne : MonoBehaviour
             playerAudio.Play();
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
+                audio.Stop();
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -79,6 +80,7 @@ public class PlayerCombatLevelOne : MonoBehaviour
             playerAudio.Play();
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
+                audio.Stop();
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
