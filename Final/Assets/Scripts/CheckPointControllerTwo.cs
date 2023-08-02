@@ -57,11 +57,13 @@ public class CheckPointControllerTwo : MonoBehaviour
     {
         if (collision.gameObject.name == "Terrain")
         {
-            if(spawnLocation.position.x < ava.transform.position.x)
+            if(spawnLocation.position.x <= ava.transform.position.x)
             {
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
+                Debug.Log("Unlocked Cursor");
                 Cursor.visible = true;
+                Debug.Log("Visible cursor");
             }
             else
             {

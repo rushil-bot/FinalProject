@@ -50,7 +50,9 @@ public class Avalanche : MonoBehaviour
             {
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
+                Debug.Log("Cursor unlocked");
                 Cursor.visible = true;
+                Debug.Log("Cursor Visible");
             }
             else
             {
