@@ -9,6 +9,9 @@ public class CheckPointControllerTwo : MonoBehaviour
     public GameObject lossPanel;
     public GameObject winPanel;
 
+    public AudioSource winAudio;
+    public AudioSource lossAudio;
+
     public GameObject spawnPoint;
     public Transform spawnLocation;
 
@@ -39,6 +42,9 @@ public class CheckPointControllerTwo : MonoBehaviour
 
         audio = avalanche.GetComponent<AudioSource>();
 
+        lossAudio = lossPanel.GetComponent<AudioSource>();
+        winAudio = winPanel.GetComponent<AudioSource>();
+
         player = GameObject.Find("Player");
         playerAudio = player.GetComponent<AudioSource>();
 
@@ -65,6 +71,7 @@ public class CheckPointControllerTwo : MonoBehaviour
         if (other.name == "EndPoint")
         {
             winPanel.SetActive(true);
+            winAudio.Play();
         }
     }
 
@@ -75,11 +82,12 @@ public class CheckPointControllerTwo : MonoBehaviour
             playerAudio.Play();
             if (spawnLocation.position.x <= ava.transform.position.x)
             {
-                
+                audio.Stop();
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                audio.Stop();
+                
             }
             else
             {
@@ -93,10 +101,12 @@ public class CheckPointControllerTwo : MonoBehaviour
             playerAudio.Play();
             if (spawnLocation.position.x <= ava.transform.position.x)
             {
+                audio.Stop();
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                audio.Stop();
+                
             }
             else
             {

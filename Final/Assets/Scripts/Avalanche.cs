@@ -20,6 +20,8 @@ public class Avalanche : MonoBehaviour
     public AudioSource playerAudio;
     public CheckPointControllerTwo checkPointController;
 
+    public AudioSource lossAudio;
+
 
     void Start()
     {
@@ -29,6 +31,8 @@ public class Avalanche : MonoBehaviour
 
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+
+        lossAudio = lossPanel.GetComponent<AudioSource>();
         lossPanel.SetActive(false);
         
         avalanche = GameObject.Find("Avalanche");
@@ -59,11 +63,12 @@ public class Avalanche : MonoBehaviour
             playerAudio.Play();
             if (avalanche.transform.position.x >= checkPointController.spawnLocation.position.x)
             {
-                
+                audio.Stop();
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                audio.Stop();
+               
             }
             else
             {
