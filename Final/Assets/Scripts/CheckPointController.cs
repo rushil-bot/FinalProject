@@ -11,6 +11,7 @@ public class CheckPointController : MonoBehaviour
 
     public GameObject canvas;
     public GameObject lossPanel;
+    public GameObject winPanel;
 
     public GameObject water;
 
@@ -27,7 +28,9 @@ public class CheckPointController : MonoBehaviour
         this.transform.position = spawnLocation.position;
 
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        winPanel = canvas.transform.Find("GameWinPanel").gameObject;
         lossPanel.SetActive(false);
+        winPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,8 +51,9 @@ public class CheckPointController : MonoBehaviour
 
         if(other.name == "EndPoint")
         {
-            Debug.Log("Level Completed!");
-            SceneManager.LoadScene(2, LoadSceneMode.Single);
+            winPanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -89,5 +93,10 @@ public class CheckPointController : MonoBehaviour
     public void Respawn()
     {
         this.transform.position = spawnLocation.position;
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 }
