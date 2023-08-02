@@ -8,6 +8,8 @@ public class Avalanche : MonoBehaviour
     public GameObject canvas;
     public GameObject lossPanel;
 
+    public AudioSource audio;
+
     public GameObject avalanche;
     public Vector3 hiddenPosition;
     public float moveSpeed = 5f;
@@ -19,7 +21,7 @@ public class Avalanche : MonoBehaviour
 
     void Start()
     {
-
+        
         player = GameObject.Find("Player");
         checkPointController = player.GetComponent<CheckPointControllerTwo>();
 
@@ -29,6 +31,8 @@ public class Avalanche : MonoBehaviour
         
         avalanche = GameObject.Find("Avalanche");
         hiddenPosition = avalanche.transform.position + new Vector3(352.0f, 0, 0);
+
+        audio = avalanche.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -48,9 +52,11 @@ public class Avalanche : MonoBehaviour
         {
             if (avalanche.transform.position.x >= checkPointController.spawnLocation.position.x)
             {
+                
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                audio.Stop();
             }
             else
             {
