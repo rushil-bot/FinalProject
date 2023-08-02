@@ -31,18 +31,33 @@ public class MobController : MonoBehaviour
     public bool playerInRange;
     public bool playerInAttackRange;
     public float lastFire = 0f;
+
+    public GameObject mobSkin;
+    public Animator anim;
+
+    public 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         state = GuardState.Waypoint;
         currentWaypoint = -1;
+        anim = mobSkin.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckGameState();
+
+        if (this.transform.hasChanged)
+        {
+            anim.SetBool("walking", true);
+        }
+        else
+        {
+            anim.SetBool("walking", false);
+        }
     }
 
 
