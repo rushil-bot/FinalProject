@@ -73,14 +73,17 @@ public class PlayerMovementTutorial : MonoBehaviour
             anim.SetBool("Run", false);
         }
 
-        if(Input.GetKey(KeyCode.Space) && readyToJump && grounded)
+        /*if(Input.GetKey(KeyCode.Space) && readyToJump && grounded)
         {
+            anim.SetBool("Run", false);
             anim.SetBool("Jump", true);
+            
         }
         else
         {
             anim.SetBool("Jump", false);
         }
+        */
         
     }
 
@@ -97,6 +100,7 @@ public class PlayerMovementTutorial : MonoBehaviour
         // when to jump
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
+            anim.SetBool("Run", false);
             readyToJump = false;
             Jump();
 
@@ -140,6 +144,8 @@ public class PlayerMovementTutorial : MonoBehaviour
     private void Jump()
     {
         // reset y velocity
+
+        anim.SetBool("Jump", true);
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
 
@@ -148,5 +154,6 @@ public class PlayerMovementTutorial : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+        anim.SetBool("Jump", false);
     }
 }
