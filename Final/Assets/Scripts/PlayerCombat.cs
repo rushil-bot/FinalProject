@@ -6,6 +6,7 @@ public class PlayerCombat : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject lossPanel;
+
     public GameObject ava;
     public CheckPointControllerTwo checkPointController;
 
@@ -26,8 +27,10 @@ public class PlayerCombat : MonoBehaviour
         audio = ava.GetComponent<AudioSource>();
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+
         lossAudio = lossPanel.GetComponent<AudioSource>();
         lossPanel.SetActive(false);
+
 
         
         player = GameObject.Find("Player");
@@ -37,7 +40,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void OnTriggerEnter(Collider other)
     {

@@ -8,6 +8,7 @@ public class CheckPointControllerTwo : MonoBehaviour
     public GameObject canvas;
     public GameObject lossPanel;
     public GameObject winPanel;
+    public GameObject closePanel;
 
     public AudioSource winAudio;
     public AudioSource lossAudio;
@@ -22,6 +23,8 @@ public class CheckPointControllerTwo : MonoBehaviour
 
     public GameObject player;
     public AudioSource playerAudio;
+
+
 
     public GameObject[] checkpoints = new GameObject[6];
     // Start is called before the first frame update
@@ -39,6 +42,7 @@ public class CheckPointControllerTwo : MonoBehaviour
 
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
         winPanel = canvas.transform.Find("GameWinPanel").gameObject;
+        closePanel = canvas.transform.Find("ClosePanel").gameObject;
 
         audio = avalanche.GetComponent<AudioSource>();
 
@@ -50,12 +54,26 @@ public class CheckPointControllerTwo : MonoBehaviour
 
         lossPanel.SetActive(false);
         winPanel.SetActive(false);
+        closePanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        float distance = Vector3.Distance(player.transform.position, ava.transform.position);
+        if (distance < 25)
+        {
+            closePanel.SetActive(true);
+        }
+        else
+        {
+            closePanel.SetActive(false);
+        }
 
+        if (lossPanel.activeSelf || winPanel.activeSelf)
+        {
+            closePanel.SetActive(false);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
