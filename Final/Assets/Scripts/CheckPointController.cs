@@ -13,7 +13,15 @@ public class CheckPointController : MonoBehaviour
     public GameObject lossPanel;
     public GameObject winPanel;
 
+    public AudioSource winAudio;
+    public AudioSource lossAudio;
+
     public GameObject water;
+
+    public AudioSource audio;
+
+    public GameObject player;
+    public AudioSource playerAudio;
 
     public GameObject[] checkpoints = new GameObject[6];
     // Start is called before the first frame update
@@ -29,6 +37,16 @@ public class CheckPointController : MonoBehaviour
 
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
         winPanel = canvas.transform.Find("GameWinPanel").gameObject;
+
+        winAudio = winPanel.GetComponent<AudioSource>();
+        lossAudio = lossPanel.GetComponent<AudioSource>();
+
+        audio = water.GetComponent<AudioSource>();
+
+        player = GameObject.Find("Player");
+        playerAudio = player.GetComponent<AudioSource>();
+
+
         lossPanel.SetActive(false);
         winPanel.SetActive(false);
     }
@@ -52,6 +70,7 @@ public class CheckPointController : MonoBehaviour
         if(other.name == "EndPoint")
         {
             winPanel.SetActive(true);
+            winAudio.Play();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -61,9 +80,11 @@ public class CheckPointController : MonoBehaviour
     {
         if(collision.gameObject.name == "Terrain")
         {
+            playerAudio.Play();
             if (water.transform.position.y >= spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
@@ -77,7 +98,9 @@ public class CheckPointController : MonoBehaviour
         {
             if (water.transform.position.y >= spawnLocation.position.y)
             {
+                playerAudio.Play();
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }

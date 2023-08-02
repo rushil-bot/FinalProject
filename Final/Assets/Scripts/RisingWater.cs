@@ -8,6 +8,8 @@ public class RisingWater : MonoBehaviour
     public GameObject canvas;
     public GameObject lossPanel;
 
+    public AudioSource lossAudio;
+
     public GameObject player;
     public CheckPointController checkPointController;
 
@@ -16,6 +18,9 @@ public class RisingWater : MonoBehaviour
     public float riseSpeed = 1.0f;
     public bool startRise = false;
 
+    public AudioSource playerAudio;
+    public AudioSource audio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +28,16 @@ public class RisingWater : MonoBehaviour
         checkPointController = player.GetComponent<CheckPointController>();
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        lossAudio = lossPanel.GetComponent<AudioSource>();
         lossPanel.SetActive(false);
         
         water = GameObject.Find("Water");
+
+        audio = water.GetComponent<AudioSource>();
+
+
+
+        playerAudio = player.GetComponent<AudioSource>();
         hiddenPosition = water.transform.position + new Vector3(0, 33.0f, 0);
     }
 
@@ -56,11 +68,15 @@ public class RisingWater : MonoBehaviour
     {
         if(other.tag=="Player")
         {
+            playerAudio.Play();
+           
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                audio.Stop();
             }
             else
             {

@@ -11,6 +11,8 @@ public class PlayerCombat : MonoBehaviour
 
     public GameObject player;
     public AudioSource playerAudio;
+
+    public AudioSource lossAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,10 @@ public class PlayerCombat : MonoBehaviour
         ava = GameObject.Find("Avalanche");
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        lossAudio = lossPanel.GetComponent<AudioSource>();
         lossPanel.SetActive(false);
 
+        
         player = GameObject.Find("Player");
         playerAudio = player.GetComponent<AudioSource>();
     }
@@ -39,6 +43,7 @@ public class PlayerCombat : MonoBehaviour
             if (ava.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Destroy(other);
@@ -56,6 +61,7 @@ public class PlayerCombat : MonoBehaviour
             if (ava.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);
+                lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }

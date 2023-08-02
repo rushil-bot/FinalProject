@@ -13,6 +13,8 @@ public class MobController : MonoBehaviour
     public GameObject prefabPaintball;
     public GameObject muzzle;
 
+    public AudioSource audio;
+
     public enum GuardState
     {
         Waypoint, MoveToWaypoint, Chase, StopChase, MoveToBuilding, Attack
@@ -43,6 +45,8 @@ public class MobController : MonoBehaviour
         state = GuardState.Waypoint;
         currentWaypoint = -1;
         anim = mobSkin.GetComponent<Animator>();
+
+        audio = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -186,6 +190,7 @@ public class MobController : MonoBehaviour
     {
         if (other.tag == "Waypoint")
         {
+
             if (state == GuardState.MoveToWaypoint)
             {
                 state = GuardState.Waypoint;
@@ -216,8 +221,11 @@ public class MobController : MonoBehaviour
         {
             GameObject ball = Object.Instantiate(prefabPaintball, muzzle.transform.position, Quaternion.identity);
 
+            audio.Play();
+
             Rigidbody rigidBody = ball.GetComponent<Rigidbody>();
             rigidBody.AddForce(transform.forward * ballSpeed);
+
             lastFire = 0;
         }
     }

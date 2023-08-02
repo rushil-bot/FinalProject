@@ -11,12 +11,21 @@ public class PlayerCombatLevelOne : MonoBehaviour
 
     public GameObject water;
 
+    public GameObject player;
+    public AudioSource playerAudio;
 
+    public AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
         checkPointController = this.GetComponent<CheckPointController>();
         water = GameObject.Find("Water");
+
+        audio = water.GetComponent<AudioSource>();
+
+        player = GameObject.Find("Player");
+        playerAudio = player.GetComponent<AudioSource>();
+
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
         lossPanel.SetActive(false);
@@ -29,12 +38,28 @@ public class PlayerCombatLevelOne : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(player.transform.position.y < -5)
+        {
+            playerAudio.Play();
+            if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
+            {
+                audio.Stop();
+                lossPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                player.SetActive(false);
+            }
+            else
+            {
+                checkPointController.Respawn();
+            }
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PaintBall")
         {
+            playerAudio.Play();
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);
@@ -51,6 +76,7 @@ public class PlayerCombatLevelOne : MonoBehaviour
 
         if (other.tag == "Mob")
         {
+            playerAudio.Play();
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
                 lossPanel.SetActive(true);
