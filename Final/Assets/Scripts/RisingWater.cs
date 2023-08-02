@@ -13,7 +13,7 @@ public class RisingWater : MonoBehaviour
 
     public GameObject water;
     public Vector3 hiddenPosition;
-    public float riseSpeed = 0.5f;
+    public float riseSpeed = 1.0f;
     public bool startRise = false;
 
     // Start is called before the first frame update
