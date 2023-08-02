@@ -66,9 +66,7 @@ public class CheckPointControllerTwo : MonoBehaviour
             {
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
-                Debug.Log("Unlocked Cursor");
                 Cursor.visible = true;
-                Debug.Log("Visible cursor");
             }
             else
             {
