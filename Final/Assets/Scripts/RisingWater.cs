@@ -7,6 +7,7 @@ public class RisingWater : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject lossPanel;
+    public GameObject closePanel;
 
     public AudioSource lossAudio;
 
@@ -28,6 +29,7 @@ public class RisingWater : MonoBehaviour
         checkPointController = player.GetComponent<CheckPointController>();
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        closePanel = canvas.transform.Find("ClosePanel").gameObject;
         lossAudio = lossPanel.GetComponent<AudioSource>();
         lossPanel.SetActive(false);
         
@@ -74,6 +76,7 @@ public class RisingWater : MonoBehaviour
             {
                 audio.Stop();
                 lossPanel.SetActive(true);
+                closePanel.SetActive(false);
                 lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

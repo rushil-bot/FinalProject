@@ -8,6 +8,7 @@ public class PlayerCombatLevelOne : MonoBehaviour
 
     public GameObject canvas;
     public GameObject lossPanel;
+    public GameObject closePanel;
 
     public GameObject water;
 
@@ -28,6 +29,7 @@ public class PlayerCombatLevelOne : MonoBehaviour
 
         canvas = GameObject.Find("Canvas");
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        closePanel = canvas.transform.Find("ClosePanel").gameObject;
         lossPanel.SetActive(false);
 
         
@@ -45,6 +47,7 @@ public class PlayerCombatLevelOne : MonoBehaviour
             {
                 audio.Stop();
                 lossPanel.SetActive(true);
+                closePanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 player.SetActive(false);
