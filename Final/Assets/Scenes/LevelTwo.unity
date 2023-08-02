@@ -10706,10 +10706,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
-  - {fileID: 1865838376}
+  - {fileID: 545635194}
   - {fileID: 71324560}
   - {fileID: 702146341}
-  - {fileID: 545635194}
+  - {fileID: 1865838376}
   - {fileID: 1716631937}
   prefabPaintball: {fileID: 3556577906454854171, guid: 5efcba3ed45e68f4da222994d21116bd, type: 3}
   muzzle: {fileID: 1488462050}
@@ -55774,10 +55774,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
-  - {fileID: 1865838376}
   - {fileID: 71324560}
-  - {fileID: 702146341}
   - {fileID: 545635194}
+  - {fileID: 702146341}
+  - {fileID: 1865838376}
   - {fileID: 1716631937}
   prefabPaintball: {fileID: 3556577906454854171, guid: 5efcba3ed45e68f4da222994d21116bd, type: 3}
   muzzle: {fileID: 1341886804}
@@ -58361,11 +58361,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
-  - {fileID: 1865838376}
-  - {fileID: 71324560}
-  - {fileID: 702146341}
-  - {fileID: 545635194}
   - {fileID: 1716631937}
+  - {fileID: 702146341}
+  - {fileID: 1865838376}
+  - {fileID: 545635194}
+  - {fileID: 71324560}
   prefabPaintball: {fileID: 3556577906454854171, guid: 5efcba3ed45e68f4da222994d21116bd, type: 3}
   muzzle: {fileID: 1917758480}
   viewRange: 50
