@@ -55,6 +55,7 @@ public class CheckPointControllerTwo : MonoBehaviour
         lossPanel.SetActive(false);
         winPanel.SetActive(false);
         closePanel.SetActive(false);
+
     }
 
     // Update is called once per frame
