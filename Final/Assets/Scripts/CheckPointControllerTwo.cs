@@ -7,6 +7,8 @@ public class CheckPointControllerTwo : MonoBehaviour
 
     public GameObject canvas;
     public GameObject lossPanel;
+    public GameObject winPanel;
+
     public GameObject spawnPoint;
     public Transform spawnLocation;
 
@@ -28,7 +30,10 @@ public class CheckPointControllerTwo : MonoBehaviour
         this.transform.position = spawnLocation.position;
 
         lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        winPanel = canvas.transform.Find("GameWinPanel").gameObject;
+
         lossPanel.SetActive(false);
+        winPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -49,7 +54,7 @@ public class CheckPointControllerTwo : MonoBehaviour
 
         if (other.name == "EndPoint")
         {
-            Debug.Log("Level Completed!");
+            winPanel.SetActive(true);
         }
     }
 
