@@ -9,6 +9,11 @@ public class CheckPointController : MonoBehaviour
     public GameObject spawnPoint;
     public Transform spawnLocation;
 
+    public GameObject canvas;
+    public GameObject lossPanel;
+
+    public GameObject water;
+
     public GameObject[] checkpoints = new GameObject[6];
     // Start is called before the first frame update
     void Start()
@@ -16,9 +21,13 @@ public class CheckPointController : MonoBehaviour
 
         spawnPoint = GameObject.Find("SpawnPoint");
         spawnLocation = spawnPoint.transform;
+
+        water = GameObject.Find("Water");
         //Debug.Log(spawnPoint.transform.position);
         this.transform.position = spawnLocation.position;
 
+        lossPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        lossPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,12 +57,30 @@ public class CheckPointController : MonoBehaviour
     {
         if(collision.gameObject.name == "Terrain")
         {
-            Respawn();
+            if (water.transform.position.y >= spawnLocation.position.y)
+            {
+                lossPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Respawn();
+            }
         }
 
         if(collision.gameObject.tag == "Spikes")
         {
-            Respawn();
+            if (water.transform.position.y >= spawnLocation.position.y)
+            {
+                lossPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Respawn();
+            }
         }
 
 

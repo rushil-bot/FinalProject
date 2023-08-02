@@ -35,7 +35,6 @@ public class MobController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        building = GameObject.Find("Building");
         state = GuardState.Waypoint;
         currentWaypoint = -1;
     }
