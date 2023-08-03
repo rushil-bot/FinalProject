@@ -52,6 +52,10 @@ public class RisingWater : MonoBehaviour
             float step = riseSpeed * Time.deltaTime;
             water.transform.position = Vector3.MoveTowards(water.transform.position, hiddenPosition, step);
         }
+        if (lossPanel.activeSelf)
+        {
+            water.SetActive(false);
+        }
     }
 
     IEnumerator timer()
