@@ -65,11 +65,16 @@ public class PlayerCombatLevelOne : MonoBehaviour
             playerAudio.Play();
             if (water.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
+                GameObject[] gos = GameObject.FindGameObjectsWithTag("Mob");
+                foreach (GameObject go in gos)
+                    Destroy(go);
+                gos = GameObject.FindGameObjectsWithTag("PaintBall");
+                foreach (GameObject go in gos)
+                    Destroy(go);
                 audio.Stop();
                 lossPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                Destroy(other);
             }
             else
             {

@@ -49,12 +49,17 @@ public class PlayerCombat : MonoBehaviour
             playerAudio.Play();
             if (ava.transform.position.y >= checkPointController.spawnLocation.position.y)
             {
+                GameObject[] gos = GameObject.FindGameObjectsWithTag("Mob");
+                foreach (GameObject go in gos)
+                    Destroy(go);
+                gos = GameObject.FindGameObjectsWithTag("PaintBall");
+                foreach (GameObject go in gos)
+                    Destroy(go);
                 audio.Stop();
                 lossPanel.SetActive(true);
                 lossAudio.Play();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                Destroy(other);
             }
             else
             {
