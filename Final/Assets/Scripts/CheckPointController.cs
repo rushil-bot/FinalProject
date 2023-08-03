@@ -94,6 +94,7 @@ public class CheckPointController : MonoBehaviour
         {
             winPanel.SetActive(true);
             closePanel.SetActive(false);
+            audio.Stop();
             winAudio.Play();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
