@@ -215,18 +215,22 @@ public class MobController : MonoBehaviour
         }
 
         agent.ResetPath();
-        transform.LookAt(target.transform);
-
-        if (lastFire >= fireRate)
+        
+        if((int)(target.transform.position.y) == (int)(this.transform.position.y) || (int)(target.transform.position.y) == (int)(this.transform.position.y + 1))
         {
-            GameObject ball = Object.Instantiate(prefabPaintball, muzzle.transform.position, Quaternion.identity);
+            transform.LookAt(target.transform);
+            if (lastFire >= fireRate)
+            {
+                GameObject ball = Object.Instantiate(prefabPaintball, muzzle.transform.position, Quaternion.identity);
 
-            audio.Play();
+                audio.Play();
 
-            Rigidbody rigidBody = ball.GetComponent<Rigidbody>();
-            rigidBody.AddForce(transform.forward * ballSpeed);
+                Rigidbody rigidBody = ball.GetComponent<Rigidbody>();
+                rigidBody.AddForce(transform.forward * ballSpeed);
 
-            lastFire = 0;
+                lastFire = 0;
+            }
         }
+
     }
 }
