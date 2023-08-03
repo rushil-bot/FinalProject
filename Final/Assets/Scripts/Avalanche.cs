@@ -49,6 +49,11 @@ public class Avalanche : MonoBehaviour
         float step = moveSpeed * Time.deltaTime;
         clouds.transform.position = Vector3.MoveTowards(clouds.transform.position, hiddenPosition, step);
         avalanche.transform.position = Vector3.MoveTowards(avalanche.transform.position, hiddenPosition, step);
+
+        if (lossPanel.activeSelf)
+        {
+            avalanche.SetActive(false);
+        }
     }
 
     public void Restart()
