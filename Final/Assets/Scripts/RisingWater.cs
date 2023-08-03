@@ -60,7 +60,7 @@ public class RisingWater : MonoBehaviour
 
     IEnumerator timer()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(4f);
         startRise = true;
 
     }
